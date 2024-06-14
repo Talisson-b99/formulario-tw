@@ -1,113 +1,290 @@
-import Image from "next/image";
+import { Bold, Italic, Link, List, ListOrdered, Mail } from 'lucide-react'
+import SettingsTabs from './components/SettingsTabs'
+import { InputControl, InputPrefix, InputRoot } from './components/input'
+import * as FileInput from '@/app/components/Form/FileInput'
+import SelectInput from './components/Form/FileInput/Select/index.'
+import SelectItem from './components/Form/FileInput/Select/select-item'
+import TextArea from './components/Form/FileInput/textarea'
+import Button from './components/button'
+import ToggleTheme from './components/toggleTheme'
 
 export default function Home() {
+  const countries = [
+    { name: 'Argentina', code: 'AR' },
+    { name: 'Australia', code: 'AU' },
+    { name: 'Austria', code: 'AT' },
+    { name: 'Belgium', code: 'BE' },
+    { name: 'Brazil', code: 'BR' },
+    { name: 'Canada', code: 'CA' },
+    { name: 'China', code: 'CN' },
+    { name: 'Colombia', code: 'CO' },
+    { name: 'Czech Republic', code: 'CZ' },
+    { name: 'Denmark', code: 'DK' },
+    { name: 'Egypt', code: 'EG' },
+    { name: 'Finland', code: 'FI' },
+    { name: 'France', code: 'FR' },
+    { name: 'Germany', code: 'DE' },
+    { name: 'Greece', code: 'GR' },
+    { name: 'Hungary', code: 'HU' },
+    { name: 'India', code: 'IN' },
+    { name: 'Indonesia', code: 'ID' },
+    { name: 'Iran', code: 'IR' },
+    { name: 'Ireland', code: 'IE' },
+    { name: 'Israel', code: 'IL' },
+    { name: 'Italy', code: 'IT' },
+    { name: 'Japan', code: 'JP' },
+    { name: 'Kenya', code: 'KE' },
+    { name: 'Mexico', code: 'MX' },
+    { name: 'Netherlands', code: 'NL' },
+    { name: 'New Zealand', code: 'NZ' },
+    { name: 'Nigeria', code: 'NG' },
+    { name: 'Norway', code: 'NO' },
+    { name: 'Pakistan', code: 'PK' },
+    { name: 'Peru', code: 'PE' },
+    { name: 'Philippines', code: 'PH' },
+    { name: 'Poland', code: 'PL' },
+    { name: 'Portugal', code: 'PT' },
+    { name: 'Romania', code: 'RO' },
+    { name: 'Russia', code: 'RU' },
+    { name: 'Saudi Arabia', code: 'SA' },
+    { name: 'South Africa', code: 'ZA' },
+    { name: 'South Korea', code: 'KR' },
+    { name: 'Spain', code: 'ES' },
+    { name: 'Sweden', code: 'SE' },
+    { name: 'Switzerland', code: 'CH' },
+    { name: 'Thailand', code: 'TH' },
+    { name: 'Turkey', code: 'TR' },
+    { name: 'Ukraine', code: 'UA' },
+    { name: 'United Arab Emirates', code: 'AE' },
+    { name: 'United Kingdom', code: 'GB' },
+    { name: 'United States', code: 'US' },
+    { name: 'Vietnam', code: 'VN' },
+  ]
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className="mt-12 lg:mt-0">
+      <div className="absolute right-12 top-6 z-40">
+        <ToggleTheme />
+      </div>
+      <h1 className="text-2xl font-medium text-zinc-900 lg:text-3xl dark:text-zinc-100">
+        Settings
+      </h1>
+      <SettingsTabs />
+
+      <div className="mt-6 flex flex-col">
+        <div className="flex flex-col items-start justify-between gap-4 border-b border-zinc-200 pb-5 lg:flex-row lg:items-center dark:border-zinc-700">
+          <div className="flex flex-col space-y-1">
+            <h2 className="text-lg font-medium text-zinc-900 dark:text-zinc-100">
+              Personal info
+            </h2>
+            <span className="text-sm text-zinc-500 dark:text-zinc-400">
+              Update your photo and personal details here.
+            </span>
+          </div>
+          <div className="flex items-center gap-3">
+            <Button variant="secondary">Cancel</Button>
+            <Button variant="primary" type="submit" form="settings">
+              Save
+            </Button>
+          </div>
         </div>
+
+        <form
+          id="settings"
+          action=""
+          className="mt-6 flex w-full flex-col gap-5 divide-y divide-zinc-200 dark:divide-zinc-700"
+        >
+          <div className="grid grid-cols-1 gap-3 lg:grid-cols-form">
+            <label
+              htmlFor="firstName"
+              className="text-sm font-medium text-zinc-700 dark:text-zinc-300"
+            >
+              Name
+            </label>
+            <div>
+              <div className="flex flex-col gap-6 lg:flex-row">
+                <InputRoot>
+                  <InputControl id="firstName" defaultValue="Talisson" />
+                </InputRoot>
+                <InputRoot>
+                  <InputControl defaultValue="Barbosa" />
+                </InputRoot>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 gap-3 pt-5 lg:grid-cols-form">
+            <label
+              htmlFor="email"
+              className="text-sm font-medium text-zinc-700 dark:text-zinc-300"
+            >
+              Email address
+            </label>
+            <div>
+              <InputRoot>
+                <InputPrefix>
+                  <Mail className="size-5 text-zinc-500" />
+                </InputPrefix>
+                <InputControl id="email" defaultValue="Talisson@email.com" />
+              </InputRoot>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 gap-3 pt-5 lg:grid-cols-form">
+            <div>
+              <label
+                htmlFor="photo"
+                className="text-sm font-medium text-zinc-700 dark:text-zinc-300"
+              >
+                Your photo
+                <span className="mt-0.5 block text-zinc-500">
+                  This will be displayed on your profile.
+                </span>
+              </label>
+            </div>
+            <FileInput.Root className="flex flex-col gap-5 lg:flex-row">
+              <FileInput.ImagePreview />
+              <FileInput.Trigger />
+              <FileInput.Controll />
+            </FileInput.Root>
+          </div>
+
+          <div className="grid grid-cols-1 gap-3 pt-5 lg:grid-cols-form">
+            <label
+              htmlFor="role"
+              className="text-sm font-medium text-zinc-700 dark:text-zinc-300"
+            >
+              Role
+            </label>
+            <div>
+              <InputRoot>
+                <InputPrefix>
+                  <Mail className="size-5 text-zinc-500" />
+                </InputPrefix>
+                <InputControl id="role" defaultValue="Product designer" />
+              </InputRoot>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 gap-3 pt-5 lg:grid-cols-form">
+            <label
+              htmlFor="role"
+              className="text-sm font-medium text-zinc-700 dark:text-zinc-300"
+            >
+              Country
+            </label>
+            <SelectInput placeholder="Select a country...">
+              {countries.map((country) => (
+                <SelectItem
+                  key={country.code}
+                  text={country.name}
+                  value={country.code.toLowerCase()}
+                />
+              ))}
+            </SelectInput>
+          </div>
+
+          <div className="grid grid-cols-1 gap-3 pt-5 lg:grid-cols-form">
+            <label
+              htmlFor="role"
+              className="text-sm font-medium text-zinc-700 dark:text-zinc-300"
+            >
+              Timezone
+            </label>
+            <SelectInput placeholder="Select a timezone...">
+              <SelectItem text="America UTC−03:00" value="pacific" />
+            </SelectInput>
+          </div>
+
+          <div className="grid grid-cols-1 gap-3 pt-5 lg:grid-cols-form">
+            <label
+              htmlFor="role"
+              className="text-sm font-medium text-zinc-700 dark:text-zinc-300"
+            >
+              Bio
+              <span className="mt-0.5 block text-sm font-medium text-zinc-500">
+                Write a short introduction
+              </span>
+            </label>
+            <div className="space-y-4">
+              <div className="flex grid-cols-2 flex-col gap-2 lg:grid">
+                <SelectInput placeholder="Normal text" defaultValue="normal">
+                  <SelectItem text="Normal Text" value="normal" />
+                </SelectInput>
+
+                <div className="flex items-center gap-3">
+                  <button type="button" className="cursor-pointer">
+                    <Bold
+                      className="size-5 text-zinc-500 hover:text-violet-600"
+                      strokeWidth={3}
+                    />
+                  </button>
+
+                  <button type="button" className="cursor-pointer">
+                    <Italic
+                      className="size- text-zinc-500 hover:text-violet-600"
+                      strokeWidth={3}
+                    />
+                  </button>
+
+                  <button type="button" className="cursor-pointer">
+                    <Link
+                      className="size-5 text-zinc-500 hover:text-violet-600"
+                      strokeWidth={3}
+                    />
+                  </button>
+
+                  <button type="button" className="cursor-pointer">
+                    <List
+                      className="size-5 text-zinc-500 hover:text-violet-600"
+                      strokeWidth={3}
+                    />
+                  </button>
+
+                  <button type="button" className="cursor-pointer">
+                    <ListOrdered
+                      className="size-5 text-zinc-500 hover:text-violet-600"
+                      strokeWidth={3}
+                    />
+                  </button>
+                </div>
+              </div>
+              <TextArea
+                id="bio"
+                defaultValue={
+                  'Im a Product Designer based in Melbourne, Australia. I specialise in UX/UI design, brand strategy, and Webflow development.'
+                }
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 gap-3 pt-5 lg:grid-cols-form">
+            <label
+              htmlFor="role"
+              className="text-sm font-medium text-zinc-700 dark:text-zinc-300"
+            >
+              Portifolio projects
+              <span className="mt-0.5 block text-sm font-medium text-zinc-500">
+                Share a few snippets of yout work.
+              </span>
+            </label>
+            <FileInput.Root>
+              <FileInput.Trigger />
+              <FileInput.FileList />
+              <FileInput.Controll multiple />
+            </FileInput.Root>
+          </div>
+          <div>
+            <div className="flex items-center justify-end gap-3 pt-5">
+              <Button variant="secondary" type="button">
+                Cancel
+              </Button>
+              <Button variant="primary" type="submit" form="settings">
+                Save
+              </Button>
+            </div>
+          </div>
+        </form>
       </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+    </div>
+  )
 }

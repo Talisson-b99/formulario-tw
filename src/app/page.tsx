@@ -65,13 +65,13 @@ export default function Home() {
       <div className="absolute right-12 top-6 z-40">
         <ToggleTheme />
       </div>
-      <h1 className="text-2xl font-medium text-zinc-900 lg:text-3xl dark:text-zinc-100">
+      <h1 className="text-2xl font-medium text-zinc-900 dark:text-zinc-100 lg:text-3xl">
         Settings
       </h1>
       <SettingsTabs />
 
       <div className="mt-6 flex flex-col">
-        <div className="flex flex-col items-start justify-between gap-4 border-b border-zinc-200 pb-5 lg:flex-row lg:items-center dark:border-zinc-700">
+        <div className="flex flex-col items-start justify-between gap-4 border-b border-zinc-200 pb-5 dark:border-zinc-700 lg:flex-row lg:items-center">
           <div className="flex flex-col space-y-1">
             <h2 className="text-lg font-medium text-zinc-900 dark:text-zinc-100">
               Personal info

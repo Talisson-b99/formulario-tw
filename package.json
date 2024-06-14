@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --check .",
+    "fix": "eslint . --fix && prettier --write ."
   },
   "dependencies": {
     "@formkit/auto-animate": "^0.8.2",

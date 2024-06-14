@@ -28,7 +28,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class">
           <div className="fixed flex min-w-full lg:grid lg:grid-cols-app">
             <Sidebar />
-            <main className="max-h-screen w-screen overflow-y-scroll px-3 pb-12 pt-8 lg:w-[100%] lg:px-8 dark:bg-zinc-900">
+            <main className="max-h-screen w-screen overflow-y-scroll px-3 pb-12 pt-8 dark:bg-zinc-900 lg:w-[100%] lg:px-8">
               {children}
             </main>
           </div>
